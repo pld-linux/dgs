@@ -1,7 +1,7 @@
 Summary:	Display GhostScript - Libraries supporting Display PostScript (DPS)
 Summary(pl):	Display GhostScript - biblioteki wspieraj±ce Display PostScript
 Name:		dgs
-Version:	0.5.9.1
+Version:	0.5.10
 Release:	1
 License:	GPL
 Vendor:		The Seawood Project
@@ -15,9 +15,11 @@ Group(ru):	X11/‚…¬Ã…œ‘≈À…
 Group(uk):	X11/‚¶¬Ã¶œ‘≈À…
 Source0:	ftp://ftp.gnustep.org/pub/gnustep/%{name}/%{name}-%{version}.tar.gz
 Patch0:		%{name}-DESTDIR.patch
+Patch1:		%{name}-time.patch
+BuildRequires:	XFree86-devel
 BuildRequires:	glib-devel
 BuildRequires:	libjpeg-devel
-BuildRequires:	XFree86-devel
+BuildRequires:	libwrap-devel
 Requires:	ghostscript
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -59,7 +61,7 @@ Requires:	%{name} = %{version}
 %description devel
 Header files and etc for develop Display PostScript applications.
 
-%description -l pl devel
+%description devel -l pl
 Pliki nag≥Ûwkowe i dokumentacja do bibliotek do Display PostScriptu.
 
 %package static
@@ -82,8 +84,9 @@ Static Display PostScript libraries.
 Biblioteki statyczne DPS.
 
 %prep
-%setup -q -n %{name}-0.5.9
+%setup -q
 %patch -p1
+%patch1 -p1
 
 %build
 %configure2_13
@@ -99,15 +102,18 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	m4datadir=%{_aclocaldir}
+	m4datadir=%{_aclocaldir} \
 	shared=yes debug=no
 
 # remove files provided by normal ghostscript
 rm -rf $RPM_BUILD_ROOT%{_mandir}
-(cd $RPM_BUILD_ROOT%{_bindir};\
-rm -f bdftops font2c gsbj gsdj gsdj500 gslj gslp gsnd printafm wftopfa)
+(cd $RPM_BUILD_ROOT%{_bindir};
+rm -f bdftops font2c gsbj gsdj gsdj500 gslj gslp gsnd printafm wftopfa
+)
 
 gzip -9nf ANNOUNCE FAQ NEWS README STATUS TODO ChangeLog
+
+mv -f $RPM_BUILD_ROOT%{_datadir}/ghostscript/*/doc ./htmldoc
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -117,7 +123,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/dgs
+%doc *.gz
 %attr(755,root,root) %{_bindir}/dpsexec
 %attr(755,root,root) %{_bindir}/dpsnx.agent
 %attr(755,root,root) %{_bindir}/makepsres
@@ -128,7 +134,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc {ANNOUNCE,FAQ,NEWS,README,STATUS,TODO,ChangeLog}.gz
+%doc htmldoc/*
 %attr(755,root,root) %{_bindir}/dgs-config
 %attr(755,root,root) %{_libdir}/lib*.so
 %attr(755,root,root) %{_libdir}/lib*.la
