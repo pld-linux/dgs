@@ -45,8 +45,8 @@ rm bdftops font2c gsbj gsdj gsdj500 gslj gslp gsnd pdf2dsc pdf2ps printafm \
 %doc ANNOUNCE FAQ INSTALL NEWS README STATUS SUPPORT TODO
 /usr/bin/*
 /usr/include/DPS
-/usr/lib/DGS
-/usr/lib/*.a
+%{_libdir}/DGS
+%{_libdir}/*.a
 
 %changelog
 * Fri Feb  5 1999 Bernhard Rosenkraenzer <bero@microsoft.sucks.eu.org>
