@@ -68,6 +68,7 @@ Biblioteki statyczne DPS.
 %patch1 -p1
 
 %build
+cp /usr/share/automake/config.sub DPS/
 %configure2_13
 %{__make} \
 	shared=yes \
