@@ -90,8 +90,6 @@ rm -rf $RPM_BUILD_ROOT%{_mandir}
 rm -f bdftops font2c gsbj gsdj gsdj500 gslj gslp gsnd printafm wftopfa
 )
 
-gzip -9nf ANNOUNCE FAQ NEWS README STATUS TODO ChangeLog
-
 mv -f $RPM_BUILD_ROOT%{_datadir}/ghostscript/*/doc ./htmldoc
 
 %clean
@@ -102,7 +100,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz
+%doc ANNOUNCE FAQ NEWS README STATUS TODO ChangeLog
 %attr(755,root,root) %{_bindir}/dpsexec
 %attr(755,root,root) %{_bindir}/dpsnx.agent
 %attr(755,root,root) %{_bindir}/makepsres
