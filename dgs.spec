@@ -19,21 +19,18 @@ the programmer from display-specific details like screen resolution and
 color issues.
 
 %prep
-%setup -n dgs
+%setup -q
 
 %build
-CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
-CXXFLAGS="$RPM_OPT_FLAGS" \
-./configure %{_target_platform} \
-	--prefix=/usr
+%configure
 
-make shared=yes debug=no
+make shared=yes debug=no CFLAGS="$RPM_OPT_FLAGS -I/usr/X11R6/include"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/usr
+install -d $RPM_BUILD_ROOT%{_prefix}
 
-make install prefix=$RPM_BUILD_ROOT/usr shared=yes debug=no
+make install DESTDIR=$RPM_BUILD_ROOT shared=yes debug=no
 
 # remove files provided by normal ghostscript
 rm -rf $RPM_BUILD_ROOT%{_mandir}
@@ -41,9 +38,12 @@ cd $RPM_BUILD_ROOT%{_bindir}
 rm bdftops font2c gsbj gsdj gsdj500 gslj gslp gsnd pdf2dsc pdf2ps printafm \
    ps2ascii ps2epsi ps2pdf wftopfa
 
+gzip -9nf ANNOUNCE FAQ NEWS README STATUS SUPPORT TODO
+
 %files
-%doc ANNOUNCE FAQ INSTALL NEWS README STATUS SUPPORT TODO
-%{_bindir}/*
+%defattr(644,root,root,755)
+%doc {ANNOUNCE,FAQ,NEWS,README,STATUS,SUPPORT,TODO}.gz
+%attr(755,root,root) %{_bindir}/*
 %{_includedir}/DPS
 %{_libdir}/DGS
 %{_libdir}/*.a
