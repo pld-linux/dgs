@@ -7,6 +7,7 @@ License:	GPL
 Vendor:		The Seawood Project
 Group:		X11/Libraries
 Source0:	ftp://ftp.gnustep.org/pub/gnustep/%{name}/%{name}-%{version}.tar.gz
+# Source0-md5:	85bf4c0be3e5325bc3bf2da3196aa299
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-time.patch
 BuildRequires:	XFree86-devel
