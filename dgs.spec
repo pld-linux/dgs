@@ -74,8 +74,8 @@ cp /usr/share/automake/config.sub DPS/
 	shared=yes \
 	debug=no \
 	SHARE_JPEG=1 \
-	gsdir=/usr/share/ghostscript \
-	gsdatadir=/usr/share/ghostscript \
+	gsdir=/usr/share/ghostscript/5.50 \
+	gsdatadir=/usr/share/ghostscript/5.50 \
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -109,6 +109,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/texteroids
 %attr(755,root,root) %{_bindir}/xepsf
 %attr(755,root,root) %{_libdir}/lib*.so.*.*.*
+%attr(644,root,root) %{_datadir}/ghostscript/5.50/*.ps
+%attr(644,root,root) %{_datadir}/ghostscript/5.50/Fontmap
 
 %files devel
 %defattr(644,root,root,755)
