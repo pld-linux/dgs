@@ -1,6 +1,6 @@
 Name:		dgs
 Summary:	Display GhostScript - Libraries supporting Display PostScript (DPS)
-Version:	0.5.7
+Version:	0.5.8
 Release:	1
 Copyright:	GPL
 Vendor:		The Seawood Project
@@ -42,7 +42,7 @@ rm -f bdftops font2c gsbj gsdj gsdj500 gslj gslp gsnd printafm wftopfa)
 strip --strip-unneeded $RPM_BUILD_ROOT%{_bindir}/* \
 	$RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*.* || :
 
-gzip -9nf ANNOUNCE FAQ NEWS NEWS-5.50 README STATUS TODO ChangeLog
+gzip -9nf ANNOUNCE FAQ NEWS README STATUS TODO ChangeLog
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -53,7 +53,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc {ANNOUNCE,FAQ,NEWS,NEWS-5.50,README,STATUS,TODO,ChangeLog}.gz
+%doc {ANNOUNCE,FAQ,NEWS,README,STATUS,TODO,ChangeLog}.gz
 %attr(755,root,root) %{_bindir}/*
 %{_includedir}/DPS
 %attr(755,root,root) %{_libdir}/lib*.so.*.*.*
