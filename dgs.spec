@@ -2,7 +2,7 @@ Name:		dgs
 Summary:	Display GhostScript - Libraries supporting Display PostScript (DPS)
 Version:	0.5.9.1
 Release:	1
-Copyright:	GPL
+License:	GPL
 Vendor:		The Seawood Project
 Group:		X11/Libraries
 Source0:	ftp://ftp.gnustep.org/pub/gnustep/%name/%name-%version.tar.gz
@@ -22,17 +22,18 @@ Adobe Display PostScript, but it has been written independently. The
 Display Ghostscript System provides a device-independent imaging model
 for displaying information on a screen. The imaging model uses the
 PostScript language which has powerful graphics capabilities and frees
-the programmer from display-specific details like screen resolution and
-color issues.
+the programmer from display-specific details like screen resolution
+and color issues.
 
 %description -l pl
-Display Ghostscript System jest kompatybilny w górê pod wzglêdem 
-funkcjonalno¶ci z Adobe Display PostScript, zosta³ jednak napisany niezale¿nie
-od niego. Dziêki Display Ghostscript System otrzymujemy niezale¿ny od
-urz±dzenia model wyswietlania informacji na ekranie. Model ten wykorzystuje 
-jêzyk PostScript, który posiada ogromne mozliwo¶ci graficzne i uwalnia
-programistê od zajmowania siê szczegó³ami zwi±zanymi z wy¶wietlaniem, takimi
-jak rozdzielczo¶æ ekranu i kwestie zwi±zane z kolorami.
+Display Ghostscript System jest kompatybilny w górê pod wzglêdem
+funkcjonalno¶ci z Adobe Display PostScript, zosta³ jednak napisany
+niezale¿nie od niego. Dziêki Display Ghostscript System otrzymujemy
+niezale¿ny od urz±dzenia model wyswietlania informacji na ekranie.
+Model ten wykorzystuje jêzyk PostScript, który posiada ogromne
+mozliwo¶ci graficzne i uwalnia programistê od zajmowania siê
+szczegó³ami zwi±zanymi z wy¶wietlaniem, takimi jak rozdzielczo¶æ
+ekranu i kwestie zwi±zane z kolorami.
 
 %package devel
 Summary:	Header files and etc for develop Display PostScript applications
@@ -120,4 +121,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_aclocaldir}/*
 
 %files static
-%attr(644,root,root) %{_libdir}/lib*.a
+%defattr(644,root,root,755)
+%{_libdir}/lib*.a
