@@ -1,11 +1,12 @@
 Name:		dgs
 Summary:	Display GhostScript - Libraries supporting Display PostScript (DPS)
+Summary(pl):	Display GhostScript - biblioteki wspieraj±ce Display PostScript
 Version:	0.5.9.1
 Release:	1
 License:	GPL
 Vendor:		The Seawood Project
 Group:		X11/Libraries
-Source0:	ftp://ftp.gnustep.org/pub/gnustep/%name/%name-%version.tar.gz
+Source0:	ftp://ftp.gnustep.org/pub/gnustep/%{name}/%{name}-%{version}.tar.gz
 Patch0:		dgs-DESTDIR.patch
 BuildRequires:	glib-devel
 BuildRequires:	libjpeg-devel
@@ -66,8 +67,6 @@ Biblioteki statyczne DPS.
 %patch -p1
 
 %build
-LDFLAGS="-s"
-export LDFLAGS
 %configure
 
 %{__make} \
@@ -89,8 +88,6 @@ rm -rf $RPM_BUILD_ROOT
 rm -rf $RPM_BUILD_ROOT%{_mandir}
 (cd $RPM_BUILD_ROOT%{_bindir};\
 rm -f bdftops font2c gsbj gsdj gsdj500 gslj gslp gsnd printafm wftopfa)
-
-strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*.*
 
 gzip -9nf ANNOUNCE FAQ NEWS README STATUS TODO ChangeLog
 
