@@ -1,6 +1,6 @@
 Name:		dgs
 Summary:	Display GhostScript - Libraries supporting Display PostScript (DPS)
-Version:	0.5.8
+Version:	0.5.9.1
 Release:	1
 Copyright:	GPL
 Vendor:		The Seawood Project
