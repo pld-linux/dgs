@@ -1,15 +1,13 @@
-Name: dgs
-Summary: Display GhostScript - Libraries supporting Display PostScript (DPS)
-Version: 0.5.0
-Release: bero1
-Copyright: Free Software
-Source: dgs.tar.bz2
-Source1: jpeg.tar.bz2
-Source2: zlib.tar.bz2
-Source3: png.tar.bz2
-Group: Applications/Graphics
-Requires: ghostscript
-BuildRoot: /var/tmp/dgs-root
+Name:		dgs
+Summary:	Display GhostScript - Libraries supporting Display PostScript (DPS)
+Version:	0.5.0
+Release:	1
+Copyright:	GPL
+Vendor:		The Seawood Project
+Source:		ftp://alpha.gnu.org/gnu/gnustep/%{name}-%{version}.tar.gz
+Group:		Applications/Graphics
+Requires:	ghostscript
+BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
 The Display Ghostscript System is functionally upward-compatible with
@@ -21,18 +19,20 @@ the programmer from display-specific details like screen resolution and
 color issues.
 
 %prep
-%setup -n dgs -a 1 -a 2 -a 3
-mv jpeg gs/jpeg-6a
-mv zlib gs
-mv png gs/libpng
-CFLAGS="$RPM_OPT_FLAGS" CXXFLAGS="$RPM_OPT_FLAGS" ./configure --prefix=/usr
+%setup -n dgs
 
 %build
+CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
+CXXFLAGS="$RPM_OPT_FLAGS" \
+./configure \
+	--prefix=/usr
+
 make shared=yes debug=no
 
 %install
 rm -rf $RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT/usr
+install -d $RPM_BUILD_ROOT/usr
+
 make install prefix=$RPM_BUILD_ROOT/usr shared=yes debug=no
 
 # remove files provided by normal ghostscript
