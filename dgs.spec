@@ -4,59 +4,112 @@ Version:	0.5.9.1
 Release:	1
 Copyright:	GPL
 Vendor:		The Seawood Project
-Source:		ftp://ftp.gnustep.org/pub/gnustep/%name/%name-%version.tar.gz
-#Source:		ftp://alpha.gnu.org/gnu/gnustep/%{name}-%{version}.tar.gz
-#Patch:		dgs-DESTDIR.patch
-Group:		Applications/Graphics
+Group:		X11/Libraries
+Source0:	ftp://ftp.gnustep.org/pub/gnustep/%name/%name-%version.tar.gz
+Patch0:		dgs-DESTDIR.patch
+BuildRequires:	glib-devel
+BuildRequires:	libjpeg-devel
+BuildRequires:	XFree86-devel
 Requires:	ghostscript
 BuildRoot:	/tmp/%{name}-%{version}-root
 
+%define		_prefix		/usr/X11R6
+%define		_aclocaldir	%(aclocal --print-ac-dir)
+
 %description
 The Display Ghostscript System is functionally upward-compatible with
-Adobe Display PostScript, but it has been written independently.  The
+Adobe Display PostScript, but it has been written independently. The
 Display Ghostscript System provides a device-independent imaging model
-for displaying information on a screen.  The imaging model uses the
+for displaying information on a screen. The imaging model uses the
 PostScript language which has powerful graphics capabilities and frees
 the programmer from display-specific details like screen resolution and
 color issues.
 
+%package devel
+Summary:	Header files and etc for develop Display PostScript applications
+Summary(pl):	Pliki nag³ówkowe i dokumentacja do bibliotek do Display PostScriptu
+Group:		X11/Development/Libraries
+Group(pl):	X11/Programowanie/Biblioteki
+Requires:	%{name} = %{version}
+
+%description devel
+Header files and etc for develop Display PostScript applications.
+
+%description -l pl devel
+Pliki nag³ówkowe i dokumentacja do bibliotek do Display PostScriptu.
+
+%package static
+Summary:	Static Display PostScript libraries
+Summary(pl):	Biblioteki statyczne DPS
+Group:		X11/Development/Libraries
+Group(pl):	X11/Programowanie/Biblioteki
+Requires:	%{name}-devel = %{version}
+
+%description static
+Static Display PostScript libraries.
+
+%description static -l pl
+Biblioteki statyczne DPS.
+
 %prep
-%setup -q
+%setup -q -n %{name}-0.5.9
 %patch -p1
 
 %build
-%GNUconfigure
+LDFLAGS="-s"
+export LDFLAGS
+%configure
 
-make shared=yes debug=no CFLAGS="$RPM_OPT_FLAGS -I/usr/X11R6/include"
+make \
+	shared=yes \
+	debug=no \
+	SHARE_JPEG=1 \
+	gsdir=/usr/share/ghostscript \
+	gsdatadir=/usr/share/ghostscript \
+
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_prefix}
 
-make install DESTDIR=$RPM_BUILD_ROOT shared=yes debug=no
+make install \
+	DESTDIR=$RPM_BUILD_ROOT \
+	m4datadir=%{_aclocaldir}
+	shared=yes debug=no
 
 # remove files provided by normal ghostscript
 rm -rf $RPM_BUILD_ROOT%{_mandir}
 (cd $RPM_BUILD_ROOT%{_bindir};\
 rm -f bdftops font2c gsbj gsdj gsdj500 gslj gslp gsnd printafm wftopfa)
 
-strip --strip-unneeded $RPM_BUILD_ROOT%{_bindir}/* \
-	$RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*.* || :
+strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*.*
 
 gzip -9nf ANNOUNCE FAQ NEWS README STATUS TODO ChangeLog
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post -p /sbin/ldconfig
-
+%post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
-%doc {ANNOUNCE,FAQ,NEWS,README,STATUS,TODO,ChangeLog}.gz
-%attr(755,root,root) %{_bindir}/*
-%{_includedir}/DPS
+%attr(755,root,root) %{_bindir}/dgs
+%attr(755,root,root) %{_bindir}/dpsexec
+%attr(755,root,root) %{_bindir}/dpsnx.agent
+%attr(755,root,root) %{_bindir}/makepsres
+%attr(755,root,root) %{_bindir}/pswrap
+%attr(755,root,root) %{_bindir}/texteroids
+%attr(755,root,root) %{_bindir}/xepsf
 %attr(755,root,root) %{_libdir}/lib*.so.*.*.*
-%{_libdir}/lib*.so
-%{_libdir}/*.a
+
+%files devel
+%defattr(644,root,root,755)
+%doc {ANNOUNCE,FAQ,NEWS,README,STATUS,TODO,ChangeLog}.gz
+%attr(755,root,root) %{_bindir}/dgs-config
+%attr(755,root,root) %{_libdir}/lib*.so
+%attr(755,root,root) %{_libdir}/lib*.la
+%{_includedir}/DPS
+%{_aclocaldir}/*
+
+%files static
+%attr(644,root,root) %{_libdir}/lib*.a
