@@ -11,6 +11,7 @@ Source0:	ftp://ftp.gnustep.org/pub/gnustep/%{name}/%{name}-%{version}.tar.gz
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-time.patch
 BuildRequires:	XFree86-devel
+BuildRequires:	automake
 BuildRequires:	glib-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libwrap-devel
@@ -68,7 +69,7 @@ Biblioteki statyczne DPS.
 %patch1 -p1
 
 %build
-cp /usr/share/automake/config.sub DPS/
+cp -f /usr/share/automake/config.sub DPS
 %configure2_13
 %{__make} \
 	shared=yes \
@@ -109,8 +110,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/texteroids
 %attr(755,root,root) %{_bindir}/xepsf
 %attr(755,root,root) %{_libdir}/lib*.so.*.*.*
-%attr(644,root,root) %{_datadir}/ghostscript/5.50/*.ps
-%attr(644,root,root) %{_datadir}/ghostscript/5.50/Fontmap
+%dir %{_datadir}/ghostscript/5.50
+%{_datadir}/ghostscript/5.50/*.ps
+%{_datadir}/ghostscript/5.50/Fontmap
 
 %files devel
 %defattr(644,root,root,755)
