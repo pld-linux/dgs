@@ -4,8 +4,9 @@ Version:	0.5.9.1
 Release:	1
 Copyright:	GPL
 Vendor:		The Seawood Project
-Source:		ftp://alpha.gnu.org/gnu/gnustep/%{name}-%{version}.tar.gz
-Patch:		dgs-DESTDIR.patch
+Source:		ftp://ftp.gnustep.org/pub/gnustep/%name/%name-%version.tar.gz
+#Source:		ftp://alpha.gnu.org/gnu/gnustep/%{name}-%{version}.tar.gz
+#Patch:		dgs-DESTDIR.patch
 Group:		Applications/Graphics
 Requires:	ghostscript
 BuildRoot:	/tmp/%{name}-%{version}-root
