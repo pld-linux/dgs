@@ -44,7 +44,7 @@ rm bdftops font2c gsbj gsdj gsdj500 gslj gslp gsnd pdf2dsc pdf2ps printafm \
 %files
 %doc ANNOUNCE FAQ INSTALL NEWS README STATUS SUPPORT TODO
 %{_bindir}/*
-/usr/include/DPS
+%{_includedir}/DPS
 %{_libdir}/DGS
 %{_libdir}/*.a
 
