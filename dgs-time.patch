@@ -1,0 +1,11 @@
+--- dgs-0.5.10/gs/time_.h.orig	Thu Apr  1 07:31:53 1999
++++ dgs-0.5.10/gs/time_.h	Thu Jan 10 10:28:35 2002
+@@ -43,7 +43,7 @@
+  */
+ #ifdef HAVE_SYS_TIME_H
+ #  include <sys/time.h>
+-#  if defined(Plan9) || defined(M_UNIX) || defined(_IBMR2) || defined(_SEQUENT_)	/* Plan 9, SCO, AIX and Sequent's DYNIX/ptx need both time.h and sys/time.h! */
++#  if defined(Plan9) || defined(M_UNIX) || defined(_IBMR2) || defined(_SEQUENT_) || defined(__linux)	/* Plan 9, SCO, AIX and Sequent's DYNIX/ptx need both time.h and sys/time.h! */
+ #    include <time.h>
+ #  endif
+ #else
