@@ -25,7 +25,7 @@ PostScript language which has powerful graphics capabilities and frees
 the programmer from display-specific details like screen resolution and
 color issues.
 
-%description - pl
+%description -l pl
 Display Ghostscript System jest kompatybilny w górê pod wzglêdem 
 funkcjonalno¶ci z Adobe Display PostScript, zosta³ jednak napisany niezale¿nie
 od niego. Dziêki Display Ghostscript System otrzymujemy niezale¿ny od
