@@ -37,13 +37,13 @@ make install prefix=$RPM_BUILD_ROOT/usr shared=yes debug=no
 
 # remove files provided by normal ghostscript
 rm -rf $RPM_BUILD_ROOT%{_mandir}
-cd $RPM_BUILD_ROOT/usr/bin
+cd $RPM_BUILD_ROOT%{_bindir}
 rm bdftops font2c gsbj gsdj gsdj500 gslj gslp gsnd pdf2dsc pdf2ps printafm \
    ps2ascii ps2epsi ps2pdf wftopfa
 
 %files
 %doc ANNOUNCE FAQ INSTALL NEWS README STATUS SUPPORT TODO
-/usr/bin/*
+%{_bindir}/*
 /usr/include/DPS
 %{_libdir}/DGS
 %{_libdir}/*.a
