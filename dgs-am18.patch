@@ -1,0 +1,83 @@
+--- dgs-0.5.10/path_dps.m4.orig	Mon Apr 10 23:31:25 2000
++++ dgs-0.5.10/path_dps.m4	Fri Dec 19 13:49:48 2003
+@@ -199,7 +199,7 @@
+ dnl Else this macro guesses dps libraries directory path and 
+ dnl set dps_libraries_candidates_gstep.
+ dnl ----------------------------------------------------------------
+-AC_DEFUN(AC_PATH_DPS_GUESS_GNUSTEP, 
++AC_DEFUN([AC_PATH_DPS_GUESS_GNUSTEP],
+ [dps_arch=${GNUSTEP_HOST_CPU}
+ dps_os=${GNUSTEP_HOST_OS}
+ dps_combo=${LIBRARY_COMBO}
+@@ -236,7 +236,7 @@
+ dnl are candidates for all platforms.
+ dnl 
+ dnl ----------------------------------------------------------------
+-AC_DEFUN(AC_PATH_DPS_GUESS,
++AC_DEFUN([AC_PATH_DPS_GUESS],
+ [dnl
+ dnl
+ dnl
+@@ -330,7 +330,7 @@
+ dnl If existing, set null string to no_dps.
+ dnl If not existing, set yes to no_dps.
+ dnl ----------------------------------------------------------------
+-AC_DEFUN(AC_PATH_DPS_CHECK_LIB,
++AC_DEFUN([AC_PATH_DPS_CHECK_LIB],
+ [if test "x$no_dps" = xyes; then
+ dnl DO nothing
+ 	echo -n "" 
+@@ -402,7 +402,7 @@
+ dnl * private AC_PATH_DPS_CHECK_HEADER
+ dnl Checking the existence of DPS/*.h
+ dnl ----------------------------------------------------------------
+-AC_DEFUN(AC_PATH_DPS_CHECK_HEADER, 
++AC_DEFUN([AC_PATH_DPS_CHECK_HEADER],
+ [AC_REQUIRE_CPP()
+ if test "x$no_dps" = xyes ; then
+ dnl DO nothing
+@@ -437,7 +437,7 @@
+ dnl ----------------------------------------------------------------
+ dnl * private AC_PATH_DPS_CHECK
+ dnl ----------------------------------------------------------------
+-AC_DEFUN(AC_PATH_DPS_CHECK, 
++AC_DEFUN([AC_PATH_DPS_CHECK],
+ [AC_PATH_DPS_CHECK_LIB 
+ if test "x$no_dps" != xyes ; then
+ 	AC_PATH_DPS_CHECK_HEADER
+@@ -447,7 +447,7 @@
+ dnl ----------------------------------------------------------------
+ dnl * public AC_PATH_DPS
+ dnl ----------------------------------------------------------------
+-AC_DEFUN(AC_PATH_DPS,
++AC_DEFUN([AC_PATH_DPS],
+ [dnl
+ AC_REQUIRE([AC_PATH_X])
+ AC_MSG_CHECKING(for DPS)
+@@ -522,7 +522,7 @@
+ dnl ----------------------------------------------------------------
+ dnl * public AC_CHECK_DPS_NXAGENT
+ dnl ----------------------------------------------------------------
+-AC_DEFUN(AC_CHECK_DPS_NXAGENT,
++AC_DEFUN([AC_CHECK_DPS_NXAGENT],
+ [AC_REQUIRE([AC_PATH_DPS])
+ if test "x$no_dps" = xyes ; then
+ dnl Do nothing
+@@ -555,7 +555,7 @@
+ dnl ----------------------------------------------------------------
+ dnl * public AC_PATH_DPSET
+ dnl ----------------------------------------------------------------
+-AC_DEFUN(AC_PATH_DPSET, 
++AC_DEFUN([AC_PATH_DPSET],
+ [AC_REQUIRE([AC_PATH_DPS])
+ AC_REQUIRE([AC_CHECK_DPS_NXAGENT])
+ 
+@@ -576,7 +576,7 @@
+ dnl Set output variable `PSWRAP' to `pswrap' if `pswrap' is found,
+ dnl otherwise to `' (Empty).
+ dnl ----------------------------------------------------------------
+-AC_DEFUN(AC_PROG_PSWRAP,
++AC_DEFUN([AC_PROG_PSWRAP],
+ [AC_CHECK_PROG(PSWRAP, pswrap, pswrap, "")])
+ 
+ 
