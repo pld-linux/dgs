@@ -1,6 +1,6 @@
-Name:		dgs
 Summary:	Display GhostScript - Libraries supporting Display PostScript (DPS)
 Summary(pl):	Display GhostScript - biblioteki wspieraj±ce Display PostScript
+Name:		dgs
 Version:	0.5.9.1
 Release:	1
 License:	GPL
@@ -68,7 +68,6 @@ Biblioteki statyczne DPS.
 
 %build
 %configure2_13
-
 %{__make} \
 	shared=yes \
 	debug=no \
