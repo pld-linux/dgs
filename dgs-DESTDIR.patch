@@ -1,0 +1,84 @@
+diff -ur dgs-0.5.7/gs/unixinst.mak dgs-0.5.7.new/gs/unixinst.mak
+--- dgs-0.5.7/gs/unixinst.mak	Mon May 31 21:14:52 1999
++++ dgs-0.5.7.new/gs/unixinst.mak	Tue Jul 20 19:56:54 1999
+@@ -35,35 +35,35 @@
+ # rules, just in case bindir or scriptdir is a subdirectory of any of these.
+ 
+ install-exec: 
+-	-mkdir $(datadir)
+-	-mkdir $(gsdir)
+-	-mkdir $(gsdatadir)
+-	-mkdir $(bindir)
+-	$(INSTALL_PROGRAM) $(GS_XE) $(bindir)/$(GS)
++	-mkdir $(DESTDIR)$(datadir)
++	-mkdir $(DESTDIR)$(gsdir)
++	-mkdir $(DESTDIR)$(gsdatadir)
++	-mkdir $(DESTDIR)$(bindir)
++	$(INSTALL_PROGRAM) $(GS_XE) $(DESTDIR)$(bindir)/$(GS)
+ 
+ install-scripts: gsnd
+-	-mkdir $(datadir)
+-	-mkdir $(gsdir)
+-	-mkdir $(gsdatadir)
+-	-mkdir $(scriptdir)
++	-mkdir $(DESTDIR)$(datadir)
++	-mkdir $(DESTDIR)$(gsdir)
++	-mkdir $(DESTDIR)$(gsdatadir)
++	-mkdir $(DESTDIR)$(scriptdir)
+ 	sh -c 'for f in \
+ gsbj gsdj gsdj500 gslj gslp gsnd  \
+ bdftops dvipdf font2c  dpsnx.agent \
+ printafm wftopfa  ;\
+-	do if ( test -f $$f ); then $(INSTALL_PROGRAM) $$f $(scriptdir)/$$f; fi;\
++	do if ( test -f $$f ); then $(INSTALL_PROGRAM) $$f $(DESTDIR)$(scriptdir)/$$f; fi;\
+ 	done'
+ 
+ MAN1_PAGES=gs pdf2dsc pdf2ps ps2ascii ps2epsi ps2pdf ps2ps
+ install-data: gs.1
+-	-mkdir $(mandir)
+-	-mkdir $(man1dir)
++	-mkdir $(DESTDIR)$(mandir)
++	-mkdir $(DESTDIR)$(man1dir)
+ 	sh -c 'for f in $(MAN1_PAGES) ;\
+-	do if ( test -f $$f.1 ); then $(INSTALL_DATA) $$f.1 $(man1dir)/$$f.$(man1ext); fi;\
++	do if ( test -f $$f.1 ); then $(INSTALL_DATA) $$f.1 $(DESTDIR)$(man1dir)/$$f.$(man1ext); fi;\
+ 	done'
+-	-mkdir $(datadir)
+-	-mkdir $(gsdir)
+-	-mkdir $(gsdir)/fonts
+-	-mkdir $(gsdatadir)
++	-mkdir $(DESTDIR)$(datadir)
++	-mkdir $(DESTDIR)$(gsdir)
++	-mkdir $(DESTDIR)$(gsdir)/fonts
++	-mkdir $(DESTDIR)$(gsdatadir)
+ 	sh -c 'for f in \
+ Fontmap  \
+  *.upp \
+@@ -88,9 +88,9 @@
+  \
+ gs_mex_e.ps gs_mro_e.ps gs_pdf_e.ps gs_wan_e.ps  \
+ gs_pdfwr.ps  ;\
+-	do if ( test -f $$f ); then $(INSTALL_DATA) $$f $(gsdatadir)/$$f; fi;\
++	do if ( test -f $$f ); then $(INSTALL_DATA) $$f $(DESTDIR)$(gsdatadir)/$$f; fi;\
+ 	done'
+-	-mkdir $(docdir)
++	-mkdir $(DESTDIR)$(docdir)
+ 	sh -c 'for f in \
+  \
+  \
+@@ -100,12 +100,12 @@
+ Htmstyle.htm Humor.htm Install.htm Language.htm Lib.htm Make.htm  New-user.htm \
+ News.htm Ps2pdf.htm Psfiles.htm Public.htm  \
+ Readme.htm Source.htm  Unix-lpr.htm Use.htm Xfonts.htm ;\
+-	do if ( test -f $$f ); then $(INSTALL_DATA) $$f $(docdir)/$$f; fi;\
++	do if ( test -f $$f ); then $(INSTALL_DATA) $$f $(DESTDIR)$(docdir)/$$f; fi;\
+ 	done'
+-	-mkdir $(exdir)
++	-mkdir $(DESTDIR)$(exdir)
+ 	for f in \
+  \
+  \
+ ridt91.eps  ;\
+-	do $(INSTALL_DATA) $$f $(exdir)/$$f ;\
++	do $(INSTALL_DATA) $$f $(DESTDIR)$(exdir)/$$f ;\
+ 	done
