@@ -5,6 +5,7 @@ Release:	1
 Copyright:	GPL
 Vendor:		The Seawood Project
 Source:		ftp://alpha.gnu.org/gnu/gnustep/%{name}-%{version}.tar.gz
+Patch:		dgs-DESTDIR.patch
 Group:		Applications/Graphics
 Requires:	ghostscript
 BuildRoot:	/tmp/%{name}-%{version}-root
@@ -20,9 +21,10 @@ color issues.
 
 %prep
 %setup -q
+%patch -p1
 
 %build
-%configure
+%GNUconfigure
 
 make shared=yes debug=no CFLAGS="$RPM_OPT_FLAGS -I/usr/X11R6/include"
 
@@ -34,16 +36,26 @@ make install DESTDIR=$RPM_BUILD_ROOT shared=yes debug=no
 
 # remove files provided by normal ghostscript
 rm -rf $RPM_BUILD_ROOT%{_mandir}
-cd $RPM_BUILD_ROOT%{_bindir}
-rm bdftops font2c gsbj gsdj gsdj500 gslj gslp gsnd pdf2dsc pdf2ps printafm \
-   ps2ascii ps2epsi ps2pdf wftopfa
+(cd $RPM_BUILD_ROOT%{_bindir};\
+rm -f bdftops font2c gsbj gsdj gsdj500 gslj gslp gsnd printafm wftopfa)
 
-gzip -9nf ANNOUNCE FAQ NEWS README STATUS SUPPORT TODO
+strip --strip-unneeded $RPM_BUILD_ROOT%{_bindir}/* \
+	$RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*.* || :
+
+gzip -9nf ANNOUNCE FAQ NEWS NEWS-5.50 README STATUS TODO ChangeLog
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%post -p /sbin/ldconfig
+
+%postun -p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
-%doc {ANNOUNCE,FAQ,NEWS,README,STATUS,SUPPORT,TODO}.gz
+%doc {ANNOUNCE,FAQ,NEWS,NEWS-5.50,README,STATUS,TODO,ChangeLog}.gz
 %attr(755,root,root) %{_bindir}/*
 %{_includedir}/DPS
-%{_libdir}/DGS
+%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
+%{_libdir}/lib*.so
 %{_libdir}/*.a
