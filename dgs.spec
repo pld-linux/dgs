@@ -24,7 +24,7 @@ color issues.
 %build
 CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
 CXXFLAGS="$RPM_OPT_FLAGS" \
-./configure \
+./configure %{_target} \
 	--prefix=/usr
 
 make shared=yes debug=no
