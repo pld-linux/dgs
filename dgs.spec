@@ -16,7 +16,6 @@ BuildRequires:	libwrap-devel
 Requires:	ghostscript
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_prefix		/usr/X11R6
 %define		_aclocaldir	%(aclocal --print-ac-dir)
 
 %description
