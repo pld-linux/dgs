@@ -1,7 +1,7 @@
-diff -ur dgs-0.5.7/gs/unixinst.mak dgs-0.5.7.new/gs/unixinst.mak
---- dgs-0.5.7/gs/unixinst.mak	Mon May 31 21:14:52 1999
-+++ dgs-0.5.7.new/gs/unixinst.mak	Tue Jul 20 19:56:54 1999
-@@ -35,35 +35,35 @@
+diff -Nru dgs-0.5.9/gs/unixinst.mak dgs-0.5.9.new/gs/unixinst.mak
+--- dgs-0.5.9/gs/unixinst.mak	Tue Jan 11 23:32:05 2000
++++ dgs-0.5.9.new/gs/unixinst.mak	Tue Mar 21 01:56:02 2000
+@@ -35,32 +35,32 @@
  # rules, just in case bindir or scriptdir is a subdirectory of any of these.
  
  install-exec: 
@@ -25,16 +25,13 @@ diff -ur dgs-0.5.7/gs/unixinst.mak dgs-0.5.7.new/gs/unixinst.mak
 +	-mkdir $(DESTDIR)$(gsdir)
 +	-mkdir $(DESTDIR)$(gsdatadir)
 +	-mkdir $(DESTDIR)$(scriptdir)
- 	sh -c 'for f in \
- gsbj gsdj gsdj500 gslj gslp gsnd  \
- bdftops dvipdf font2c  dpsnx.agent \
- printafm wftopfa  ;\
+ 	sh -c 'for f in dpsnx.agent ;\
 -	do if ( test -f $$f ); then $(INSTALL_PROGRAM) $$f $(scriptdir)/$$f; fi;\
 +	do if ( test -f $$f ); then $(INSTALL_PROGRAM) $$f $(DESTDIR)$(scriptdir)/$$f; fi;\
  	done'
  
- MAN1_PAGES=gs pdf2dsc pdf2ps ps2ascii ps2epsi ps2pdf ps2ps
- install-data: gs.1
+ MAN1_PAGES=dgs
+ install-data: dgs.1
 -	-mkdir $(mandir)
 -	-mkdir $(man1dir)
 +	-mkdir $(DESTDIR)$(mandir)
@@ -53,8 +50,8 @@ diff -ur dgs-0.5.7/gs/unixinst.mak dgs-0.5.7.new/gs/unixinst.mak
 +	-mkdir $(DESTDIR)$(gsdatadir)
  	sh -c 'for f in \
  Fontmap  \
-  *.upp \
-@@ -88,9 +88,9 @@
+  gs_dpsx.ps \
+@@ -84,9 +84,9 @@
   \
  gs_mex_e.ps gs_mro_e.ps gs_pdf_e.ps gs_wan_e.ps  \
  gs_pdfwr.ps  ;\
@@ -66,7 +63,7 @@ diff -ur dgs-0.5.7/gs/unixinst.mak dgs-0.5.7.new/gs/unixinst.mak
  	sh -c 'for f in \
   \
   \
-@@ -100,12 +100,12 @@
+@@ -96,12 +96,12 @@
  Htmstyle.htm Humor.htm Install.htm Language.htm Lib.htm Make.htm  New-user.htm \
  News.htm Ps2pdf.htm Psfiles.htm Public.htm  \
  Readme.htm Source.htm  Unix-lpr.htm Use.htm Xfonts.htm ;\
