@@ -114,7 +114,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc htmldoc/*
 %attr(755,root,root) %{_bindir}/dgs-config
 %attr(755,root,root) %{_libdir}/lib*.so
-%attr(755,root,root) %{_libdir}/lib*.la
+%{_libdir}/lib*.la
 %{_includedir}/DPS
 %{_aclocaldir}/*
 
