@@ -70,7 +70,7 @@ LDFLAGS="-s"
 export LDFLAGS
 %configure
 
-make \
+%{__make} \
 	shared=yes \
 	debug=no \
 	SHARE_JPEG=1 \
@@ -80,7 +80,7 @@ make \
 %install
 rm -rf $RPM_BUILD_ROOT
 
-make install \
+%{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	m4datadir=%{_aclocaldir}
 	shared=yes debug=no
