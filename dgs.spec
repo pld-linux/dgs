@@ -1,8 +1,8 @@
-Summary:	Display GhostScript - Libraries supporting Display PostScript (DPS)
+Summary:	Display GhostScript - libraries supporting Display PostScript (DPS)
 Summary(pl):	Display GhostScript - biblioteki wspieraj±ce Display PostScript
 Name:		dgs
 Version:	0.5.10
-Release:	1
+Release:	2
 License:	GPL
 Vendor:		The Seawood Project
 Group:		X11/Libraries
@@ -10,6 +10,7 @@ Source0:	ftp://ftp.gnustep.org/pub/gnustep/%{name}/%{name}-%{version}.tar.gz
 # Source0-md5:	85bf4c0be3e5325bc3bf2da3196aa299
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-time.patch
+Patch2:		%{name}-am18.patch
 BuildRequires:	XFree86-devel
 BuildRequires:	automake
 BuildRequires:	glib-devel
@@ -17,8 +18,6 @@ BuildRequires:	libjpeg-devel
 BuildRequires:	libwrap-devel
 Requires:	ghostscript
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define		_aclocaldir	%(aclocal --print-ac-dir)
 
 %description
 The Display Ghostscript System is functionally upward-compatible with
@@ -40,13 +39,13 @@ szczegó³ami zwi±zanymi z wy¶wietlaniem, takimi jak rozdzielczo¶æ
 ekranu i kwestie zwi±zane z kolorami.
 
 %package devel
-Summary:	Header files and etc for develop Display PostScript applications
+Summary:	Header files etc for Display PostScript applications development
 Summary(pl):	Pliki nag³ówkowe i dokumentacja do bibliotek do Display PostScriptu
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}
 
 %description devel
-Header files and etc for develop Display PostScript applications.
+Header files etc for Display PostScript applications development.
 
 %description devel -l pl
 Pliki nag³ówkowe i dokumentacja do bibliotek do Display PostScriptu.
@@ -65,8 +64,9 @@ Biblioteki statyczne DPS.
 
 %prep
 %setup -q
-%patch -p1
+%patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 cp -f /usr/share/automake/config.sub DPS
@@ -76,7 +76,7 @@ cp -f /usr/share/automake/config.sub DPS
 	debug=no \
 	SHARE_JPEG=1 \
 	gsdir=/usr/share/ghostscript/5.50 \
-	gsdatadir=/usr/share/ghostscript/5.50 \
+	gsdatadir=/usr/share/ghostscript/5.50
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -84,7 +84,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	m4datadir=%{_aclocaldir} \
-	shared=yes debug=no
+	shared=yes \
+	debug=no
 
 # remove files provided by normal ghostscript
 rm -rf $RPM_BUILD_ROOT%{_mandir}
