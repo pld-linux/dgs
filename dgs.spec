@@ -11,7 +11,7 @@ BuildRequires:	glib-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	XFree86-devel
 Requires:	ghostscript
-BuildRoot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
 %define		_aclocaldir	%(aclocal --print-ac-dir)
@@ -75,7 +75,6 @@ make \
 	SHARE_JPEG=1 \
 	gsdir=/usr/share/ghostscript \
 	gsdatadir=/usr/share/ghostscript \
-
 
 %install
 rm -rf $RPM_BUILD_ROOT
