@@ -32,9 +32,9 @@ and color issues.
 Display Ghostscript System jest kompatybilny w górê pod wzglêdem
 funkcjonalno¶ci z Adobe Display PostScript, zosta³ jednak napisany
 niezale¿nie od niego. Dziêki Display Ghostscript System otrzymujemy
-niezale¿ny od urz±dzenia model wyswietlania informacji na ekranie.
+niezale¿ny od urz±dzenia model wy¶wietlania informacji na ekranie.
 Model ten wykorzystuje jêzyk PostScript, który posiada ogromne
-mozliwo¶ci graficzne i uwalnia programistê od zajmowania siê
+mo¿liwo¶ci graficzne i uwalnia programistê od zajmowania siê
 szczegó³ami zwi±zanymi z wy¶wietlaniem, takimi jak rozdzielczo¶æ
 ekranu i kwestie zwi±zane z kolorami.
 
