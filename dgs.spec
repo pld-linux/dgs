@@ -42,7 +42,7 @@ ekranu i kwestie zwi±zane z kolorami.
 Summary:	Header files etc for Display PostScript applications development
 Summary(pl):	Pliki nag³ówkowe i dokumentacja do bibliotek do Display PostScriptu
 Group:		X11/Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Header files etc for Display PostScript applications development.
@@ -54,7 +54,7 @@ Pliki nag³ówkowe i dokumentacja do bibliotek do Display PostScriptu.
 Summary:	Static Display PostScript libraries
 Summary(pl):	Biblioteki statyczne DPS
 Group:		X11/Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static Display PostScript libraries.
