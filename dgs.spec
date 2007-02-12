@@ -1,5 +1,5 @@
 Summary:	Display GhostScript - libraries supporting Display PostScript (DPS)
-Summary(pl):	Display GhostScript - biblioteki wspieraj±ce Display PostScript
+Summary(pl.UTF-8):   Display GhostScript - biblioteki wspierajÄ…ce Display PostScript
 Name:		dgs
 Version:	0.5.10
 Release:	2
@@ -28,38 +28,38 @@ PostScript language which has powerful graphics capabilities and frees
 the programmer from display-specific details like screen resolution
 and color issues.
 
-%description -l pl
-Display Ghostscript System jest kompatybilny w górê pod wzglêdem
-funkcjonalno¶ci z Adobe Display PostScript, zosta³ jednak napisany
-niezale¿nie od niego. Dziêki Display Ghostscript System otrzymujemy
-niezale¿ny od urz±dzenia model wy¶wietlania informacji na ekranie.
-Model ten wykorzystuje jêzyk PostScript, który posiada ogromne
-mo¿liwo¶ci graficzne i uwalnia programistê od zajmowania siê
-szczegó³ami zwi±zanymi z wy¶wietlaniem, takimi jak rozdzielczo¶æ
-ekranu i kwestie zwi±zane z kolorami.
+%description -l pl.UTF-8
+Display Ghostscript System jest kompatybilny w gÃ³rÄ™ pod wzglÄ™dem
+funkcjonalnoÅ›ci z Adobe Display PostScript, zostaÅ‚ jednak napisany
+niezaleÅ¼nie od niego. DziÄ™ki Display Ghostscript System otrzymujemy
+niezaleÅ¼ny od urzÄ…dzenia model wyÅ›wietlania informacji na ekranie.
+Model ten wykorzystuje jÄ™zyk PostScript, ktÃ³ry posiada ogromne
+moÅ¼liwoÅ›ci graficzne i uwalnia programistÄ™ od zajmowania siÄ™
+szczegÃ³Å‚ami zwiÄ…zanymi z wyÅ›wietlaniem, takimi jak rozdzielczoÅ›Ä‡
+ekranu i kwestie zwiÄ…zane z kolorami.
 
 %package devel
 Summary:	Header files etc for Display PostScript applications development
-Summary(pl):	Pliki nag³ówkowe i dokumentacja do bibliotek do Display PostScriptu
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe i dokumentacja do bibliotek do Display PostScriptu
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Header files etc for Display PostScript applications development.
 
-%description devel -l pl
-Pliki nag³ówkowe i dokumentacja do bibliotek do Display PostScriptu.
+%description devel -l pl.UTF-8
+Pliki nagÅ‚Ã³wkowe i dokumentacja do bibliotek do Display PostScriptu.
 
 %package static
 Summary:	Static Display PostScript libraries
-Summary(pl):	Biblioteki statyczne DPS
+Summary(pl.UTF-8):   Biblioteki statyczne DPS
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static Display PostScript libraries.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Biblioteki statyczne DPS.
 
 %prep
