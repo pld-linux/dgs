@@ -1,5 +1,5 @@
 Summary:	Display GhostScript - libraries supporting Display PostScript (DPS)
-Summary(pl.UTF-8):   Display GhostScript - biblioteki wspierające Display PostScript
+Summary(pl.UTF-8):	Display GhostScript - biblioteki wspierające Display PostScript
 Name:		dgs
 Version:	0.5.10
 Release:	2
@@ -40,7 +40,7 @@ ekranu i kwestie związane z kolorami.
 
 %package devel
 Summary:	Header files etc for Display PostScript applications development
-Summary(pl.UTF-8):   Pliki nagłówkowe i dokumentacja do bibliotek do Display PostScriptu
+Summary(pl.UTF-8):	Pliki nagłówkowe i dokumentacja do bibliotek do Display PostScriptu
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -52,7 +52,7 @@ Pliki nagłówkowe i dokumentacja do bibliotek do Display PostScriptu.
 
 %package static
 Summary:	Static Display PostScript libraries
-Summary(pl.UTF-8):   Biblioteki statyczne DPS
+Summary(pl.UTF-8):	Biblioteki statyczne DPS
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
